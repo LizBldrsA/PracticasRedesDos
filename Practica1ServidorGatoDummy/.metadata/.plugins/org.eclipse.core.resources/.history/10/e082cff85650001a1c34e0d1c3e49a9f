@@ -1,0 +1,187 @@
+package cliente;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+//import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+
+public class Cliente {
+	
+	
+	protected Socket conexionAlServidor;
+	protected DataOutputStream flujoSalidaAlServidor;
+	protected DataInputStream flujoEntradaDelServidor;
+	
+	
+	
+	public String[] obtenerIpPuerto(){
+		
+		Scanner sc = new Scanner(System.in);
+		String ip, puerto;
+		System.out.println("Ingrese la IP: ");
+		ip = sc.next();
+		System.out.println("Ingrese el puerto: ");
+		puerto = sc.next();
+		
+		return new String[] {ip,puerto};
+		
+	}
+	
+	public boolean conectarseAlServidor(String ip, int puerto) {
+		try {
+			conexionAlServidor = new Socket(ip, puerto);
+			flujoSalidaAlServidor = new DataOutputStream(conexionAlServidor.getOutputStream()); //flujo de datos hacia el servidor
+			flujoEntradaDelServidor = new DataInputStream(conexionAlServidor.getInputStream());
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
+	public String obtenerDificultad(){
+		
+		Scanner sc = new Scanner(System.in);
+		String dificultad;
+		System.out.println("Ingrese la Dificultad: ");
+		System.out.println("\t 1) Principiante 3 x 3 ");
+		System.out.println("\t 2) Avanzado 5 x 5 ");
+		dificultad = sc.next();
+		
+		return dificultad;
+		
+	}
+	
+	public void enviarDatoAlServidor(String dato) {
+		try {
+			flujoSalidaAlServidor.writeUTF(dato);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String leerDatoDelServidor() {
+		try {
+			return flujoEntradaDelServidor.readUTF();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+		
+	public String leerCoordenadaDelCliente() {
+		Scanner sc = new Scanner(System.in);
+		String coordenadaLeida;
+		System.out.println("Ingresa la coordenada del tiro (COLUMNA-FILA): ");
+		coordenadaLeida = sc.next();
+		return coordenadaLeida;
+		
+	}
+	
+	private boolean casillaOcupada(int x, int y, char[][] tablero) {
+		if (tablero[x][y] == '-') {
+			return false;
+		} else {
+			return true;
+		}	
+	}
+	
+	private int [] convertirCoordenada(String coordenada) {
+		String[] coordenadas = coordenada.split("-");
+		int x,y;
+
+		try {
+			char coordenadaX = coordenadas[0].toCharArray()[0];
+			y = Integer.parseInt(coordenadas[1])-1; 
+			x = coordenadaX - 65;
+		}catch(NumberFormatException ex) {
+			x=-1;
+			y=-1;
+		}
+		return new int[] {x,y};
+	}
+	
+	public boolean validaCoordenada(String coordenada, String dificultad, char[][] tablero ) {
+		int limiteSuperior;
+		int x,y;
+		String[] coordenadas = coordenada.split("-");
+		if (coordenadas.length < 2) {
+			return false;
+		}
+		
+		int[] coordenadasInt = convertirCoordenada(coordenada);
+		x = coordenadasInt[0];
+		y = coordenadasInt[1];
+		
+		if(x == -1 || y == -1) {
+			return false;
+		}
+		if(dificultad.trim().equals("1")) {
+			limiteSuperior = 3;
+		} else {
+			limiteSuperior = 5;
+		}
+		
+		if(y>limiteSuperior || x>limiteSuperior) {
+			return false;
+		}
+		
+		if(casillaOcupada(x, y, tablero)) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	private void imprimirTablero(char[][] tablero) {
+		if(tablero.length == 3) {
+			System.out.println("\tA  B  C");
+			
+
+		} else {
+			System.out.println("\tA  B  C  D  E");
+
+		}
+		for(int i = 0; i<tablero.length; i++) {
+			System.out.print((i+1) + "\t");
+			for(int j=0; j<tablero[0].length; j++) {
+				System.out.print(tablero [i][j] + "  ");
+			}
+			System.out.print("\n");
+		}
+	}
+	
+	private char[][] generarTableroVacio (String dificultad){
+		char tablero[][];
+		
+		if(dificultad.trim().equals("1")) {
+			tablero = new char [3][3];
+		} else {
+			tablero = new char [5][5];
+		}
+		
+		for(int i = 0; i<tablero.length; i++) {
+			for(int j=0; j<tablero[0].length; j++) {
+				tablero [i][j] = '-';
+			}
+		}
+		return tablero;
+	}
+	
+	
+	public void iniciarJuego(String dificultad) {
+		char tablero[][] = generarTableroVacio(dificultad);
+		imprimirTablero(tablero);
+		String coordenadaLeida = leerCoordenadaDelCliente();
+		if(validaCoordenada(coordenadaLeida, dificultad, tablero)) {
+			int coordenadas[] = convertirCoordenada(coordenadaLeida);
+		}
+	}
+	
+}

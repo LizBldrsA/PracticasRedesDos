@@ -1,0 +1,22 @@
+package conexion;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Conexion {
+
+	private final int PUERTO=6969;
+	private final String HOST="localhost";
+	
+	protected String mensajesRecibidosEnServidor;
+	protected ServerSocket sockservidor;
+	protected Socket sockcliente;
+	protected DataOutputStream flujoSalidaServidor, flujoSalidaCliente;
+	
+	public Conexion(String tipo) throws IOException{
+		
+		sockcliente = new Socket(HOST, PUERTO);
+	}
+}
