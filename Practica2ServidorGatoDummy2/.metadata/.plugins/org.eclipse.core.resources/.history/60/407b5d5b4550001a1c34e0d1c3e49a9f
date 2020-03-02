@@ -1,0 +1,85 @@
+package servidor;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+//import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+
+public class Servidor {
+	
+	protected ServerSocket socketServidor;	
+	
+	public int obtenerPuerto(){
+		
+		Scanner sc = new Scanner(System.in);
+		int puerto;
+		System.out.println("Ingrese el puerto: ");
+		puerto = sc.nextInt();
+		
+		return puerto;
+		
+	}
+
+	public void iniciarServidor(int puerto) {
+		try {
+			socketServidor = new ServerSocket(puerto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Socket esperarCliente() {
+		
+		try {
+			Socket conexionAlCliente = socketServidor.accept(); // accept() para comenzar el socket y esperar la conexión
+			return conexionAlCliente;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public DataOutputStream abrirFlujoDeSaidaAlCliente(Socket conexionAlCliente) {
+		try {
+			DataOutputStream flujoSalidaAlCliente = new DataOutputStream(conexionAlCliente.getOutputStream());
+			return flujoSalidaAlCliente;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public DataInputStream abrirFlujoDeEntradaDelCliente(Socket conexionAlCliente) {
+		try {
+			DataInputStream flujoEntradaDelCliente = new DataInputStream(conexionAlCliente.getInputStream());
+			return flujoEntradaDelCliente;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void enviarDatoAlCliente(DataOutputStream flujoSalidaAlCliente, String dato) {
+		try {
+			flujoSalidaAlCliente.writeUTF(dato);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String leerDatoDelCliente(DataInputStream flujoDeEntradaDelCliente) {
+		try {
+			return flujoDeEntradaDelCliente.readUTF();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

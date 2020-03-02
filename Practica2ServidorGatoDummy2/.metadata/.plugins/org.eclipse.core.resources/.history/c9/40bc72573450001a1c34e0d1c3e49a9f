@@ -1,0 +1,12 @@
+package main;
+
+import java.io.IOException;
+import cliente.Cliente;
+
+public class MainCliente {
+	public static void main(String[] args) throws IOException{
+		Cliente cliente = new Cliente();
+		System.out.println("Iniciando Cliente");
+		cliente.startClient();
+	}
+}

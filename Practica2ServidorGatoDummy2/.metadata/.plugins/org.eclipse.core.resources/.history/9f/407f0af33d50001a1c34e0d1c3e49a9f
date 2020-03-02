@@ -1,0 +1,15 @@
+package main;
+
+import java.io.IOException;
+import servidor.Servidor;
+
+public class MainServidor {
+
+	public static void main(String[] args) throws IOException{
+		Servidor servidor = new Servidor();
+		
+		int puerto = servidor.obtenerPuerto();
+		
+	}
+	
+}

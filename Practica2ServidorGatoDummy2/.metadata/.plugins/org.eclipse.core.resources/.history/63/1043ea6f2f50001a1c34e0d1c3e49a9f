@@ -1,0 +1,48 @@
+package servidor;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import conexion.Conexion;
+
+public class Servidor {
+	
+	private final int PUERTO=6969; 
+	
+	protected String mensajesRecibidosEnServidor;
+	protected ServerSocket sockservidor;
+	protected Socket sockcliente;
+	protected DataOutputStream flujoSalidaServidor, flujoSalidaCliente;
+	
+	
+	public void startServer() {
+		try {
+			sockservidor = new ServerSocket(PUERTO);
+			sockcliente = new Socket();
+			
+			System.out.println("Esperanding conexion");
+			sockcliente = sockservidor.accept(); // accept() para comenzar el socket y esperar la conexión
+			
+			System.out.println("Cliente conectado");
+			flujoSalidaCliente = new DataOutputStream(sockcliente.getOutputStream()); // Obtener flujo de salida del cliente
+			flujoSalidaCliente.writeUTF("Petición recibida"); // Mensaje dirijido al cliente usando su flujo de salida
+			
+			BufferedReader entrada = new BufferedReader(new InputStreamReader(sockcliente.getInputStream()) ); //Obtenemos flujo de entrada desde el cliente
+			
+			while((mensajesRecibidosEnServidor = entrada.readLine()) != null) {
+				System.out.println("Mensaje recibido" + mensajesRecibidosEnServidor);
+			}
+			
+			System.out.println("Fin de conexion");
+			sockservidor.close(); // Finaliza conexión con el cliente
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}

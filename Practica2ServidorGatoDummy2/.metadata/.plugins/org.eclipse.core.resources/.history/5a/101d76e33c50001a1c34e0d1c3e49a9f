@@ -1,0 +1,14 @@
+package main;
+
+import java.io.IOException;
+import servidor.Servidor;
+
+public class MainServidor {
+
+	public static void main(String[] args) throws IOException{
+		Servidor serv = new Servidor(); // Crea el objeto servidor
+		System.out.println("Iniciando Servidor");
+		serv.startServer(); //Inicia Servidor
+	}
+	
+}

@@ -1,0 +1,50 @@
+package cliente;
+
+import java.io.DataOutputStream;
+//import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+
+public class Cliente {
+	
+	private final int PUERTO=6969;
+	private final String HOST="localhost";
+	
+	protected String mensajesRecibidosEnServidor;
+	protected ServerSocket sockservidor;
+	protected Socket sockcliente;
+	protected DataOutputStream flujoSalidaServidor, flujoSalidaCliente;
+	
+	
+	public void startClient() {
+		try {
+			sockcliente = new Socket(HOST, PUERTO);
+			flujoSalidaServidor = new DataOutputStream(sockcliente.getOutputStream()); //flujo de datos hacia el servidor
+			
+			for(int i=0; i<2; i++) {
+				flujoSalidaServidor.writeUTF("Este es el mensaje número "+ (i+1) + "\n");
+				
+			}
+			sockcliente.close();
+			System.out.println("Conexión terminada con el servidor");
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	private String[] obtenerIpPuerto(){
+		
+		Scanner sc = new Scanner(System.in);
+		String ip, puerto;
+		System.out.println("Ingrese la IP: ");
+		ip = sc.nextLine();
+		System.out.println("Ingrese el puerto: ");
+		puerto = sc.nextLine();
+		
+	return new String[] {ip,puerto};
+		
+	}
+	
+}

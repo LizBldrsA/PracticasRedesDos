@@ -35,9 +35,11 @@
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_SAVE" value="false"/>
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="/home/liz/eclipse-workspace"/>
 		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="1"/>
-		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="MainCliente - Practica1ClienteGatoDummy"/>
-		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="/run/media/liz/8027-56AE/ClienteGato.jar"/>
+		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="MainServidor (1) - Practica2ServidorGatoDummy2"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="/run/media/liz/8027-56AE/ServidorGatoP2.jar"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/run/media/liz/8027-56AE/ServidorGatoP2.jar"/>
+			<item value="/run/media/liz/8027-56AE/ClienteGatoP2.jar"/>
 			<item value="/run/media/liz/8027-56AE/ClienteGato.jar"/>
 			<item value="/run/media/liz/8027-56AE/ServidorGato.jar"/>
 		</list>
@@ -45,5 +47,23 @@
 			<item value="/home/liz/eclipse-workspace.xml"/>
 			<item value=".xml"/>
 		</list>
+	</section>
+	<section name="SourceActionDialog.methods">
+		<item key="VisibilityModifier" value="1"/>
+		<item key="FinalModifier" value="false"/>
+		<item key="SynchronizedModifier" value="false"/>
+		<item key="Comments" value="false"/>
+		<item key="InsertPosition.v2" value="2"/>
+	</section>
+	<section name="AddGetterSetterDialog">
+		<item key="SortOrdering" value="false"/>
+		<item key="RemoveFinal" value="false"/>
+	</section>
+	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
+		<item key="DIALOG_X_ORIGIN" value="39"/>
+		<item key="DIALOG_Y_ORIGIN" value="29"/>
+		<item key="DIALOG_WIDTH" value="631"/>
+		<item key="DIALOG_HEIGHT" value="725"/>
+		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
 	</section>
 </section>

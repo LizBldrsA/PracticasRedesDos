@@ -1,0 +1,236 @@
+package servidor;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+//import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class Servidor {
+	
+	protected ServerSocket socketServidor;	
+	
+	public int obtenerPuerto(){
+		
+		Scanner sc = new Scanner(System.in);
+		int puerto;
+		System.out.println("Ingrese el puerto: ");
+		puerto = sc.nextInt();
+		
+		return puerto;
+		
+	}
+
+	public void iniciarServidor(int puerto) {
+		try {
+			socketServidor = new ServerSocket(puerto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Socket esperarCliente() {
+		
+		try {
+			Socket conexionAlCliente = socketServidor.accept(); // accept() para comenzar el socket y esperar la conexión
+			return conexionAlCliente;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public DataOutputStream abrirFlujoDeSaidaAlCliente(Socket conexionAlCliente) {
+		try {
+			DataOutputStream flujoSalidaAlCliente = new DataOutputStream(conexionAlCliente.getOutputStream());
+			return flujoSalidaAlCliente;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public DataInputStream abrirFlujoDeEntradaDelCliente(Socket conexionAlCliente) {
+		try {
+			DataInputStream flujoEntradaDelCliente = new DataInputStream(conexionAlCliente.getInputStream());
+			return flujoEntradaDelCliente;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void enviarDatoAlCliente(DataOutputStream flujoSalidaAlCliente, String dato) {
+		try {
+			flujoSalidaAlCliente.writeUTF(dato);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String leerDatoDelCliente(DataInputStream flujoDeEntradaDelCliente) {
+		try {
+			return flujoDeEntradaDelCliente.readUTF();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	private char[][] generarTableroVacio (String dificultad){
+		char tablero[][];
+		
+		if(dificultad.trim().equals("1")) {
+			tablero = new char [3][3];
+		} else {
+			tablero = new char [5][5];
+		}
+		
+		for(int i = 0; i<tablero.length; i++) {
+			for(int j=0; j<tablero[0].length; j++) {
+				tablero [i][j] = '-';
+			}
+		}
+		return tablero;
+	}
+	
+	private int[] obtenerTiroDelCliente(DataInputStream flujoDeEntradaDelCliente) {
+		String coordenadaRecibida = leerDatoDelCliente(flujoDeEntradaDelCliente);
+		String [] coordenadasRecibidas = coordenadaRecibida.split("-");
+		return new int[] {Integer.parseInt(coordenadasRecibidas[0]), Integer.parseInt(coordenadasRecibidas[1])};
+	}
+	
+	private boolean casillaOcupada(int x, int y, char[][] tablero) {
+		if (tablero[x][y] == '-') {
+			return false;
+		} else {
+			return true;
+		}	
+	}
+	
+	private int[] generarTiroDelServidor(String dificultad, char[][] tablero) {
+		boolean tiroValido = false;
+		int x = -1, y = -1, limiteSuperior;
+		Random generadorAleatorios = new Random();
+		if(dificultad.trim().equals("1")) {
+			limiteSuperior = 3;
+		} else {
+			limiteSuperior = 5;
+		}
+		
+		while(!tiroValido) {
+			x = generadorAleatorios.nextInt(limiteSuperior);
+			y = generadorAleatorios.nextInt(limiteSuperior);
+			
+			if(!casillaOcupada(x, y, tablero)) {
+				tiroValido = true;
+			}
+		}
+		return new int [] {x,y};
+	}
+	
+	private void enviarTiroDelServidor(DataOutputStream flujoSalidaAlCliente, int x, int y) {
+		enviarDatoAlCliente(flujoSalidaAlCliente, x+"-"+y);
+	}
+	
+	private String validarResultado(char [][] tablero) {
+		
+		
+		for(int i = 0; i<tablero.length; i++) {
+			boolean todosX = true, todosO = true;
+				
+			for(int j=0; j<tablero[0].length; j++) {
+				if(tablero[i][j] == 'X') {
+					todosO = false;
+				} else if(tablero[i][j] == 'O') {
+					todosX = false;
+				}else {
+					todosX = false;
+					todosO = false;
+				}
+			}
+			
+			if(todosX) {
+				return "Cliente";
+			} else if(todosO) {
+				return "Servidor";
+			}
+			
+		}
+		
+		for(int i = 0; i<tablero.length; i++) {
+			boolean todosX = true, todosO = true;
+				
+			for(int j=0; j<tablero[0].length; j++) {
+				if(tablero[j][i] == 'X') {
+					todosO = false;
+				} else if(tablero[j][i] == 'O') {
+					todosX = false;
+				}else {
+					todosX = false;
+					todosO = false;
+				}
+			}
+			
+			if(todosX) {
+				return "Cliente";
+			} else if(todosO) {
+				return "Servidor";
+			}
+			
+		}
+		
+		boolean todasLasCasillasOcupadas = true;
+		for(int i = 0; i<tablero.length; i++) {
+			for(int j=0; j<tablero[0].length; j++) {
+				if(!casillaOcupada(i, j, tablero)) {
+					todasLasCasillasOcupadas = false;
+				}
+			}
+		}
+		if(todasLasCasillasOcupadas) {
+			return "Empate";
+		}else {
+			return "Continua";
+		}
+	}
+	
+	public void iniciarJuego (String dificultad, DataOutputStream flujoSalidaAlCliente, DataInputStream flujoDeEntradaDelCliente) {
+		char tablero[][] = generarTableroVacio(dificultad);
+		String estado="Continua";
+		
+		while(estado.trim().equals("Continua")) {
+			int[] tiroCliente = obtenerTiroDelCliente(flujoDeEntradaDelCliente);
+			tablero[tiroCliente[0]][tiroCliente[1]] = 'X';
+			estado = validarResultado(tablero);
+			if(!estado.trim().equals("Continua")) {
+				break;
+			}
+				
+			int[] tiroServidor = generarTiroDelServidor(dificultad, tablero);
+			tablero[tiroServidor[0]][tiroServidor[1]] = 'O';
+			enviarTiroDelServidor(flujoSalidaAlCliente, tiroServidor[0], tiroServidor[1]);
+			estado = validarResultado(tablero);
+
+		}
+		
+		if(estado.trim().equals("Cliente")) {
+			enviarDatoAlCliente(flujoSalidaAlCliente, "GanaJugador");
+
+		} else if(estado.trim().equals("Servidor")) {
+			enviarDatoAlCliente(flujoSalidaAlCliente, "GanaServidor");
+
+		} else {
+			enviarDatoAlCliente(flujoSalidaAlCliente, "Empate");
+
+		}
+	}
+}

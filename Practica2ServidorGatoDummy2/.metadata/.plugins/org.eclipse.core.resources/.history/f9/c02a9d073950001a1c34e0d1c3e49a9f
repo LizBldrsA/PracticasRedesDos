@@ -1,0 +1,82 @@
+package cliente;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+//import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+
+public class Cliente {
+	
+	
+	protected Socket conexionAlServidor;
+	protected DataOutputStream flujoSalidaAlServidor;
+	protected DataInputStream flujoEntradaDelServidor;
+	
+	
+	
+	public String[] obtenerIpPuerto(){
+		
+		Scanner sc = new Scanner(System.in);
+		String ip, puerto;
+		System.out.println("Ingrese la IP: ");
+		ip = sc.nextLine();
+		System.out.println("Ingrese el puerto: ");
+		puerto = sc.nextLine();
+		sc.close();
+		
+		return new String[] {ip,puerto};
+		
+	}
+	
+	public boolean conectarseAlServidor(String ip, int puerto) {
+		try {
+			conexionAlServidor = new Socket(ip, puerto);
+			flujoSalidaAlServidor = new DataOutputStream(conexionAlServidor.getOutputStream()); //flujo de datos hacia el servidor
+			flujoEntradaDelServidor = new DataInputStream(conexionAlServidor.getInputStream());
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
+	public int obtenerDificultad(){
+		
+		Scanner sc = new Scanner(System.in);
+		int dificultad;
+		System.out.println("Ingrese la Dificultad: ");
+		System.out.println("\t 1) Principiante 3 x 3 ");
+		System.out.println("\t 2) Avanzado 5 x 5 ");
+
+		dificultad = sc.nextInt();
+		sc.close();
+		
+		return dificultad;
+		
+	}
+	
+	public void enviarDatoAlServidor(String dato) {
+		try {
+			flujoSalidaAlServidor.writeUTF(dato);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String leerDatoDelServidor() {
+		try {
+			return flujoEntradaDelServidor.readUTF();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+}
