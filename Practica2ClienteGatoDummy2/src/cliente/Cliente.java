@@ -227,7 +227,7 @@ public class Cliente {
 		new Thread (new Runnable() {
 			@Override
 			public void run() {
-				actualizarTablero(numeroCliente);
+				actualizarTablero(numeroCliente); //
 			}
 		}).start();
 		System.out.println("Ingresa la coordenada del tiro (COLUMNA-FILA): ");
