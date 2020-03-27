@@ -1,0 +1,39 @@
+package servidor;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import conexion.Conexion;
+
+public class Servidor extends Conexion {
+
+	public Servidor() throws IOException {
+		super("servidor");
+	}
+	
+	public void startServer() {
+		try {
+			System.out.println("Esperanding conexion");
+			sockcliente = sockservidor.accept(); // accept() para comenzar el socket y esperar la conexión
+			
+			System.out.println("Cliente conectado");
+			flujoSalidaCliente = new DataOutputStream(sockcliente.getOutputStream()); // Obtener flujo de salida del cliente
+			flujoSalidaCliente.writeUTF("Petición recibida"); // Mensaje dirijido al cliente usando su flujo de salida
+			
+			BufferedReader entrada = new BufferedReader(new InputStreamReader(sockcliente.getInputStream()) ); //Obtenemos flujo de entrada desde el cliente
+			
+			while((mensajesRecibidosEnServidor = entrada.readLine()) != null) {
+				System.out.println("Mensaje recibido" + mensajesRecibidosEnServidor);
+			}
+			
+			System.out.println("Fin de conexion");
+			sockservidor.close(); // Finaliza conexión con el cliente
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}

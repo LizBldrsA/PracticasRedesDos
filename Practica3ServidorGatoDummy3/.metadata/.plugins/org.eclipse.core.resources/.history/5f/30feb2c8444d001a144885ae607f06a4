@@ -1,0 +1,21 @@
+package conexion;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Conexion {
+
+	private final int PUERTO=6969; 
+	
+	protected String mensajes;
+	protected ServerSocket sockservidor;
+	protected Socket sockcliente;
+	protected DataOutputStream flujoSalidaServidor, flujoSalidaCliente;
+	
+	public Conexion(String tipo) throws IOException{
+		sockservidor = new ServerSocket(PUERTO);
+		sockcliente = new Socket();
+	}
+}

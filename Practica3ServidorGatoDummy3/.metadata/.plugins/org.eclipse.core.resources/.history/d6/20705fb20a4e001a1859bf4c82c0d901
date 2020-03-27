@@ -1,0 +1,27 @@
+package cliente;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import conexion.Conexion;
+
+public class Cliente extends Conexion {
+
+	public Cliente() throws IOException{
+		super("cliente");
+	}
+	
+	public void startClient() {
+		try {
+			flujoSalidaServidor = new DataOutputStream(sockcliente.getOutputStream()); //flujo de datos hacia el servidor
+			
+			for(int i=0; i<2; i++) {
+				flujoSalidaServidor.writeUTF("Este es el mensaje número "+ (i+1) + "\n");
+				
+			}
+			sockcliente.close();
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	
+}
