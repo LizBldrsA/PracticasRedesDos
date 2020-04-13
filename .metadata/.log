@@ -360,3 +360,127 @@ org.eclipse.core.runtime.CoreException: Cannot determine URI for '/Practica1Serv
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1438)
 !SUBENTRY 2 org.eclipse.core.filebuffers 4 0 2020-02-15 20:38:52.888
 !MESSAGE Cannot determine URI for '/Practica1ServidorGatoDummy/src/main/MainServidor.java'.
+!SESSION 2020-03-27 13:25:34.434 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=1.8.0_232
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_MX
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:42.137
+!MESSAGE Failed to dispatch repository event to org.eclipse.m2e.core.internal.embedder.EclipseRepositoryListener: null
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:43.086
+!MESSAGE Failed to dispatch repository event to org.eclipse.m2e.core.internal.embedder.EclipseRepositoryListener: null
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:44.231
+!MESSAGE Failed to dispatch repository event to org.eclipse.m2e.core.internal.embedder.EclipseRepositoryListener: null
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:45.191
+!MESSAGE Failed to dispatch repository event to org.eclipse.m2e.core.internal.embedder.EclipseRepositoryListener: null
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:46.304
+!MESSAGE Failed to dispatch repository event to org.eclipse.m2e.core.internal.embedder.EclipseRepositoryListener: null
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:47.533
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:50.437
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:51:58.281
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:07.624
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:07.656
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:32.955
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:33.128
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:33.796
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:33.901
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:35.184
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:35.330
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:35.351
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:36.013
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:36.193
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:36.712
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-03-27 16:52:36.977
+!MESSAGE The artifact jdom:jdom:jar:1.1 has been relocated to org.jdom:jdom:jar:1.1
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2020-03-27 16:52:40.105
+!MESSAGE Could not download sources for com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
+!STACK 1
+org.eclipse.core.runtime.CoreException: Could not resolve artifact com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:805)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:773)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:750)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:304)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1375)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Contains: Missing com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2020-03-27 16:52:40.107
+!MESSAGE Could not resolve artifact com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2020-03-27 16:52:40.107
+!MESSAGE Missing com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2020-03-27 16:53:01.828
+!MESSAGE Could not download javadoc for com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
+!STACK 1
+org.eclipse.core.runtime.CoreException: Could not resolve artifact com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:805)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:773)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:750)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:316)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1375)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Contains: Missing com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2020-03-27 16:53:01.828
+!MESSAGE Could not resolve artifact com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2020-03-27 16:53:01.828
+!MESSAGE Missing com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
