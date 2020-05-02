@@ -193,11 +193,11 @@ public class Cliente {
 				int [] coordenadaDeUltimoTiro = convertirCoordenadaDelServidor(datoDelServidor.split("_")[0]);
 				char caracterDeTiro = Character.toChars(97+numeroDeClienteQueTiro)[0];
 				tablero[coordenadaDeUltimoTiro[1]][coordenadaDeUltimoTiro[0]] = caracterDeTiro;
-				String datoVictoria[] = datoDelServidor.split(" ");
+				String datoVictoria[] = datoDelServidor.split("_")[1].split(" ");
 				if(String.valueOf(numeroCliente).equals(datoVictoria[1])) {
 					System.out.println("GANASTE!");
 				}else {
-					System.out.println("PERDISTE, "+datoDelServidor.split("_")[1]);
+					System.out.println("PERDISTE, GANA "+(Integer.valueOf(datoDelServidor.split("_")[1].split(" ")[1])+1));
 				}
 				imprimirTablero(tablero);
 				finDelJuego = true;

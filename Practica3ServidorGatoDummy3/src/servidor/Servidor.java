@@ -208,7 +208,7 @@ public class Servidor {
 			}
 			if(esteClienteGana) {
 				//Retornamos al ganador
-				return "GANA "+(i+1);
+				return "GANA "+i;
 			}
 		}
 		if(hayEspaciosVacios) {
