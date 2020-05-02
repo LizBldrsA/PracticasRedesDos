@@ -220,7 +220,7 @@ public class Servidor {
 	
 	public void iniciarJuego (DataOutputStream flujoSalidaAlCliente, DataInputStream flujoDeEntradaDelCliente, int numeroCliente) {
 		char caracterDeTiro = Character.toChars(97+numeroCliente)[0];
-		while(!finDelJuego) {
+		while(!finDelJuego) { 
 			synchronized (TURNO) {
 				if(TURNO == numeroCliente) {
 					enviarDatoTodosClientes("TURNO "+numeroCliente);
