@@ -20,9 +20,6 @@ with SimpleXMLRPCServer(('localhost', 8000),logRequests=True, requestHandler=Req
         def div(self, x, y):
             return x / y
 
-        def sub(self, x, y):
-            return x - y
-
         def show_type(self, arg):
             return (str(arg), str(type(arg)), arg)
 
