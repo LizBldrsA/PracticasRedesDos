@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/home/millocorona/Descargas/xmlrpc-2.0.1-bin/xmlrpc-2.0.1/xmlrpc-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/millocorona/Descargas/commons-codec-1.14-bin/commons-codec-1.14/commons-codec-1.14.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
